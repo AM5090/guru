@@ -1,0 +1,51 @@
+@use "../../styles/constants.scss" as vars;
+
+:where(.css-dev-only-do-not-override-tchc97).ant-card .ant-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  background: 
+    linear-gradient(180deg, #23232308 0%,#23232300 50%) padding-box,
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(180deg, #EDEDED 0%, #ededed00 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 34px;
+  padding: 48px;
+
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-card-bordered {
+  border: 1px solid transparent;
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-card .ant-card-body:first-child {
+  border-start-start-radius: 32px;
+  border-start-end-radius: 32px;
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-form-item-vertical .ant-form-item-label {
+  color: vars.$dark3;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.015em;
+  padding: 0 0 6px;
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-form-item {
+  margin-bottom: 16px;
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-checkbox-wrapper {
+  color: vars.$grey8;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+
+:where(.css-dev-only-do-not-override-tchc97).ant-divider-horizontal {
+  min-width: auto;
+}
