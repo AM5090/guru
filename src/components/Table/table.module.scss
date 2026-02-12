@@ -1,0 +1,57 @@
+@use "../../styles/constants.scss"  as vars;
+
+.tableWrapper {
+  padding: 30px;
+  border-radius: 12px;
+  background-color: vars.$white;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+
+  h4 {
+    color: vars.$dark;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button:first-child {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border-color: vars.$grey2;
+  }
+
+  button:last-child {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 147px;
+    height: 42px;
+    padding: 10px 20px 10px 20px;
+    margin-left: 8px;
+    border-radius: 6px;
+    background: vars.$blue;
+    color: vars.$white;
+
+    & > span:last-child {
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: 0;
+      text-align: left;
+      padding-bottom: 3px;
+    }
+  }
+}
