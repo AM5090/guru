@@ -1,0 +1,12 @@
+name: Aiti Guru
+
+on:
+  pull_request: 
+    branches: [main]
+
+jobs:
+  install:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
