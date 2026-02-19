@@ -4,14 +4,13 @@ import {
   Route,
 } from "react-router-dom";
 import { Table } from "../components/Table";
-import { mockData } from "../components/Table/settings";
-import { LoginModal } from "../components/LoginModal";
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route index element={<LoginModal />} />
-      <Route path="orders" element={<Table data={mockData} />} />
+      <Route index element={<LoginPage />} />
+      <Route path="orders" element={<Table data={[]} />} />
     </>
   )
 );

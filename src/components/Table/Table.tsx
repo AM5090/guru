@@ -7,6 +7,7 @@ import styles from "./table.module.scss";
 import "./table.ant.scss";
 import CaretLeft from "../shared/icons/CaretLeft";
 import CaretRight from "../shared/icons/CarrentRight";
+import { useGetProductsQuery } from "../../store/services/api/products";
 
 type TableRowSelection<T extends object = object> =
   TableProps<T>["rowSelection"];
@@ -16,6 +17,12 @@ const Table: FC<OrdersTableProps> = (props) => {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
+  const { data: ordersData, isLoading } = useGetProductsQuery();
+
+  useEffect(() => {
+    console.log("data: ", data);
+  }, [data]);
+
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -24,21 +31,6 @@ const Table: FC<OrdersTableProps> = (props) => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
-
-  const getProducts = async () => {
-    const res = await fetch(
-      "https://dummyjson.com/products?select=id,title,brand,sku,rating,price"
-    );
-    const data = await res.json();
-    return data;
-  };
-
-  useEffect(() => {
-    console.log(document.fonts.check("12px Cairo"));
-    getProducts().then((res) => {
-      console.log("res: ", res);
-    });
-  }, []);
 
   return (
     <div className={styles.tableWrapper}>
@@ -59,7 +51,9 @@ const Table: FC<OrdersTableProps> = (props) => {
         rowKey={"id"}
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        // dataSource={data}
+        dataSource={ordersData?.products}
+        loading={isLoading}
         pagination={{
           pageSize: 20,
           itemRender: (_, type, originalElement) => {
