@@ -3,3 +3,9 @@ export type FormFields = {
   password: string;
   remember: string;
 };
+
+export interface LoginModalProps {
+  onSubmit: (fields: FormFields) => void;
+  loading: boolean;
+  errorMessage: string;
+}
