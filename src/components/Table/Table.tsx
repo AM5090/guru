@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { Button, Table as TableUI, type TableProps } from "antd";
 import { columns } from "./settings";
 import { ArrowsClockwise, PlusCircle } from "../shared/icons";
@@ -15,10 +15,6 @@ const Table = memo(function Table(props: OrdersTableProps) {
   const { data, isLoading, refetchData } = props;
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
-  useEffect(() => {
-    console.log("data: ", data);
-  }, [data]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
