@@ -9,5 +9,7 @@ export interface OrdersTableData {
 }
 
 export interface OrdersTableProps {
-  data: OrdersTableData[];
+  data: OrdersTableData[] | undefined;
+  isLoading: boolean;
+  refetchData: () => void;
 }

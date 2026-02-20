@@ -11,10 +11,30 @@ interface ProductsResponse {
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+    prepareHeaders: (headers) => {
+      const accessToken =
+        localStorage.getItem("accessToken") ||
+        sessionStorage.getItem("accessToken");
+
+      if (accessToken) {
+        headers.set("Authorization", `Bearer ${accessToken}`);
+      }
+
+      return headers;
+    },
+  }),
+
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, void>({
-      query: () => "products?select=id,title,brand,sku,rating,price&limit=40",
+      query: () => ({
+        url: "products?select=id,title,brand,sku,rating,price&limit=40",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
     }),
   }),
 });

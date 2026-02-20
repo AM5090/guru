@@ -38,6 +38,8 @@ const useSessionFuncs = (reloadTrigger: boolean) => {
   };
 
   const sessionTokens = useMemo(() => {
+    if (reloadTrigger) return;
+
     const {
       accessToken: accessTokenInSessionStorage,
       refreshToken: refreshTokenInSessionStorage,
@@ -61,7 +63,6 @@ const useSessionFuncs = (reloadTrigger: boolean) => {
         refreshToken: refreshTokenInLocalStorage,
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reloadTrigger]);
 
   return {
