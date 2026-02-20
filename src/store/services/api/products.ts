@@ -25,7 +25,6 @@ export const productsApi = createApi({
       return headers;
     },
   }),
-
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, void>({
       query: () => ({
@@ -36,7 +35,16 @@ export const productsApi = createApi({
         },
       }),
     }),
+    searchProducts: builder.query<ProductsResponse, { querySearch: string }>({
+      query: (params) => ({
+        url: `products/search?q=${params?.querySearch}&select=id,title,brand,sku,rating,price&limit=40`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useLazySearchProductsQuery } = productsApi;
