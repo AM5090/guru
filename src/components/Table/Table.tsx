@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import { memo, useEffect, useState } from "react";
 import { Button, Table as TableUI, type TableProps } from "antd";
 import { columns } from "./settings";
 import { ArrowsClockwise, PlusCircle } from "../shared/icons";
@@ -7,17 +7,14 @@ import styles from "./table.module.scss";
 import "./table.ant.scss";
 import CaretLeft from "../shared/icons/CaretLeft";
 import CaretRight from "../shared/icons/CarrentRight";
-import { useGetProductsQuery } from "../../store/services/api/products";
 
 type TableRowSelection<T extends object = object> =
   TableProps<T>["rowSelection"];
 
-const Table: FC<OrdersTableProps> = (props) => {
-  const { data } = props;
+const Table = memo(function Table(props: OrdersTableProps) {
+  const { data, isLoading, refetchData } = props;
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
-  const { data: ordersData, isLoading } = useGetProductsQuery();
 
   useEffect(() => {
     console.log("data: ", data);
@@ -37,7 +34,7 @@ const Table: FC<OrdersTableProps> = (props) => {
       <div className={styles.titleWrapper}>
         <h4>Все товары</h4>
         <div className={styles.buttons}>
-          <Button type="default">
+          <Button type="default" onClick={refetchData}>
             <ArrowsClockwise />
           </Button>
           <Button type="primary">
@@ -51,8 +48,7 @@ const Table: FC<OrdersTableProps> = (props) => {
         rowKey={"id"}
         rowSelection={rowSelection}
         columns={columns}
-        // dataSource={data}
-        dataSource={ordersData?.products}
+        dataSource={data}
         loading={isLoading}
         pagination={{
           pageSize: 20,
@@ -88,6 +84,6 @@ const Table: FC<OrdersTableProps> = (props) => {
       />
     </div>
   );
-};
+});
 
 export default Table;
